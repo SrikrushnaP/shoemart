@@ -1,34 +1,6 @@
-<nav class="bg-primary border-bottom">
-  <div class="container d-flex flex-wrap">
-    <ul class="nav me-auto">
-      <li class="nav-item"><a href="../index.html" class="nav-link text-white px-2 active"
-          aria-current="page">Home</a>
-      </li>
-      <li class="nav-item"><a href="../pages/aboutUs.html" class="nav-link text-white px-2">About</a></li>
-      <li class="nav-item"><a href="../pages/faq.html" class="nav-link text-white px-2">FAQ</a></li>
-      <li class="nav-item"><a href="../pages/contact.html" class="nav-link text-white px-2">Contact</a></li>
-    </ul>
-    <ul class="nav" id="beforeLogin">
-      <li class="nav-item"><a href="../pages/loginUser.html" class="nav-link text-white px-2">Login</a></li>
-      <li class="nav-item d-none d-sm-block">
-        <a href="../pages/registerUser.html" class="nav-link text-white px-2">
-          Sign up
-        </a>
-      </li>
-    </ul>
-    <ul class="nav" id="afterLogin">
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          <i class="bi bi-person-circle"> Hi Dummy</i>
-        </a>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="userProfile.html">Profile</a></li>
-          <li><a class="dropdown-item" href="orderList.html">Orders</a></li>
-          <li><a class="dropdown-item" href="viewAddress.html">Address</a></li>
-          <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" onClick="logOut()">Logout</a></li>
-        </ul>
-      </li>
-    </ul>
-  </div>
-</nav>
+<app-top-nav></app-top-nav>
+<app-secondary-nav></app-secondary-nav>
+<app-carousel></app-carousel>
+<app-home></app-home>
+<router-outlet></router-outlet>
+<app-footer></app-footer>
