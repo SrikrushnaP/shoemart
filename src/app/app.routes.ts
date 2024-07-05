@@ -9,6 +9,11 @@ import { ForgotPasswordComponent } from './user/forgot-password/forgot-password.
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 
 import { ProfileComponent } from './user/profile/profile.component';
+import { ProductsListComponent } from './products/products-list/products-list.component';
+import { ProductViewComponent } from './products/product-view/product-view.component';
+import { ViewCartComponent } from './cart/view-cart/view-cart.component';
+import { CheckoutCartComponent } from './cart/checkout-cart/checkout-cart.component';
+import { PolicyInfoComponent } from './pages/policy-info/policy-info.component';
 
 
 export const routes: Routes = [
@@ -16,8 +21,15 @@ export const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'about', component: AboutUsComponent },
   { path: 'faq', component: FaqComponent },
+  { path: 'policy', component: PolicyInfoComponent },
   { path: 'contact', component: ContactUsComponent },
 
+  { path: 'products-list', component: ProductsListComponent },
+  { path: 'product-view', component: ProductViewComponent },
+
+  { path: 'cart-view', component: ViewCartComponent },
+  { path: 'cart-checkout', component: CheckoutCartComponent },
+  { path: 'wishlist', component:  ViewCartComponent},
 
   { path: 'profile', component: ProfileComponent },
   // { path: 'orders', component: LoginComponent },

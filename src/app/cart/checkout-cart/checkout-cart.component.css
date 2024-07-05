@@ -1,0 +1,11 @@
+
+.cart-confirm-tick{
+  display: flex;
+justify-content: center; /* align horizontal */
+align-items: center; /* align vertical */
+}
+
+.cart-confirm-tick i {
+  font-size: 160px;
+  color: green;
+}

@@ -1,1 +1,41 @@
-<p>products-list works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3 mt-3">
+      <!-- Side bar will go here -->
+    </div>
+    <div class="col-lg-9 mb-3 mt-3">
+      <!-- <h2 class="pb-2 border-bottom">Top Products</h2> -->
+      <!-- START PRODUCT DISPLAY -->
+      <div class="row mt-5">
+        @for (product of productList; track $index) {
+          <div class="col col-md-3 col-6 mb-2">
+            <div class="card h-100">
+              <!-- Product image-->
+              <a href="product/view/{{product.id}}">
+                <img class="card-img-top" src="{{product.image}}" alt="{{product.name}}"  />
+              </a>
+              <!-- Product details-->
+              <div class="card-body p-4">
+                <div class="text-center">
+                  <!-- Product name-->
+                  <h5 class="fw-bolder">{{product.name}}</h5>
+                  <!-- Product price-->
+                  &#8377; {{product.price}}
+                </div>
+              </div>
+              <!-- Product actions-->
+              <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                <div class="d-grid">
+                  <button class="btn btn-info me-2" type="button" (click)="addItemTocart(product.id)">Add to cart</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        } @empty {
+          <div>No Products</div>
+        }
+      </div>
+      <!-- /END PRODUCT DISPLAY -->
+    </div>
+  </div>
+</div>

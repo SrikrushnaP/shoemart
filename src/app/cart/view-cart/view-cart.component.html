@@ -1,1 +1,53 @@
-<p>view-cart works!</p>
+<!-- Wrap the rest of the page in another container to center all the content. -->
+<div class="container">
+  <section class="h-100 py-5">
+      <!-- If product in cart -->
+       @if (cartProductList.length) {
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-md-10 col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <h3 class="fw-normal mb-0 text-black">Shopping Cart Details</h3>
+              <h5>Cart Subtotal ({{cartItemCount}} items): &#8377; {{totalPrice}}</h5>
+            </div>
+            @for (product of cartProductList; track $index) {
+              <div class="card rounded-3 mb-4">
+                <div class="card-body p-4">
+                  <div class="row d-flex justify-content-between align-items-center">
+                    <div class="col-md-2 col-lg-2 col-xl-2" [routerLink]="['../../product/view/', product.id]">
+                      <img src="{{product.image}}"
+                        class="img-fluid rounded-3" alt="{{product.name}}">
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-xl-4">
+                      <p class="lead fw-normal mb-2">{{product.name}}</p>
+                      <p>{{product.description}}</p>
+                    </div>
+                    <div class="col-md-2 col-lg-2 col-xl-2">
+                      <input min="0" name="quantity" value="{{cartData.product_id_quantity[$index].quantity}}" type="number" (change)="changeCartProductQuantity($index, $event)"
+                        class="form-control form-control-lg" />
+                    </div>
+                    <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                      <h5 class="mb-0">&#8377; {{product.price}}</h5>
+                    </div>
+                    <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                      <a class="text-danger" (click)="removeProductFromCart($index, product.id)"><i class="bi bi-trash3-fill"></i></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            }
+            <a href="cart/checkout" class="w-100 btn btn-primary btn-lg">Proceed to Checkout</a>
+          </div>
+        </div>
+      } @else {
+        <!-- If there is no product incart -->
+      <div>
+        <img src="../../../assets/images/empty-shopping-cart.png" class="img-fluid rounded mx-auto d-block"
+          alt="image name">
+        <div class="text-center mb-5 mt-5">
+          <h3>Your shopping cart bag is empty! Let’s add some item to your bag? </h3>
+          <a routerLink="/checkout" class="btn btn-info btn-lg mt-4">Go to product page</a>
+        </div>
+      </div>
+      }
+  </section>
+</div>

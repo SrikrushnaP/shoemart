@@ -8,5 +8,6 @@ import { Component } from '@angular/core';
   styleUrl: './product-view.component.css'
 })
 export class ProductViewComponent {
-
+  productList: any;
+  addItemTocart(productId: any){}
 }

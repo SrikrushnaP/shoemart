@@ -8,5 +8,6 @@ import { Component } from '@angular/core';
   styleUrl: './products-list.component.css'
 })
 export class ProductsListComponent {
-
+  productList: any;
+  addItemTocart(productId: any){}
 }
