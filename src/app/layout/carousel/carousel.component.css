@@ -13,7 +13,7 @@
 
 /* Declare heights because of positioning of img element */
 .carousel-item {
-  height: 20rem;
+  height: 22rem;
 }
 
 /* Style apply to images start */
@@ -32,11 +32,11 @@
 }
 .imgSlideTwo {
   /* The image used */
-  background-image: url("/assets/images/banners/slide-2.jpg");
+  background-image: url("/assets/images/banners/slide-4.jpg");
 }
 .imgSlideThree {
   /* The image used */
-  background-image: url("/assets/images/banners/slide-3.jpg");
+  background-image: url("/assets/images/banners/slide-5.jpg");
 }
 
 /* RESPONSIVE CSS
