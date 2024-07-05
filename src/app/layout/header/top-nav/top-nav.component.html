@@ -1,16 +1,16 @@
 <nav class="bg-primary border-bottom">
   <div class="container d-flex flex-wrap">
     <ul class="nav me-auto">
-      <li class="nav-item"><a href="../index.html" class="nav-link text-white px-2 active" aria-current="page">Home</a>
+      <li class="nav-item"><a routerLink="/" class="nav-link text-white px-2 active" aria-current="page">Home</a>
       </li>
-      <li class="nav-item"><a href="../pages/aboutUs.html" class="nav-link text-white px-2">About</a></li>
-      <li class="nav-item"><a href="../pages/faq.html" class="nav-link text-white px-2">FAQ</a></li>
-      <li class="nav-item"><a href="../pages/contact.html" class="nav-link text-white px-2">Contact</a></li>
+      <li class="nav-item"><a routerLink="/about" class="nav-link text-white px-2">About</a></li>
+      <li class="nav-item"><a routerLink="/faq" class="nav-link text-white px-2">FAQ</a></li>
+      <li class="nav-item"><a routerLink="/contact" class="nav-link text-white px-2">Contact</a></li>
     </ul>
     <ul class="nav" id="beforeLogin">
-      <li class="nav-item"><a href="../pages/loginUser.html" class="nav-link text-white px-2">Login</a></li>
+      <li class="nav-item"><a routerLink="/login" class="nav-link text-white px-2">Login</a></li>
       <li class="nav-item d-none d-sm-block">
-        <a href="../pages/registerUser.html" class="nav-link text-white px-2">
+        <a routerLink="/register" class="nav-link text-white px-2">
           Sign up
         </a>
       </li>
@@ -23,17 +23,17 @@
         </a>
         <ul class="dropdown-menu">
           <li>
-            <a class="dropdown-item" href="userProfile.html">
+            <a class="dropdown-item" routerLink="/profile">
               <i class="bi bi-person-circle"></i> Profile
             </a>
           </li>
           <li>
-            <a class="dropdown-item" href="orderList.html">
+            <a class="dropdown-item" routerLink="/orders">
               <i class="bi bi-card-list"></i> Orders
             </a>
           </li>
           <li>
-            <a class="dropdown-item" href="viewAddress.html">
+            <a class="dropdown-item" routerLink="/wishlist">
               <i class="bi bi-suit-heart"></i> Wishlist (10)
             </a>
           </li>

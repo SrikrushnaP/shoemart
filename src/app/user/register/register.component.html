@@ -1,1 +1,47 @@
-<p>register works!</p>
+<div class="container">
+  <section class="h-100 py-5">
+    <div class="row d-flex justify-content-center h-100">
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+          <h2>Resiter New User</h2>
+          <p>Alreaddy have an account? click to <a routerLink="/login">Login</a></p>
+          <hr>
+          <form name="form" #rf="ngForm" (ngSubmit)="rf.form.valid && onSubmitSignUp()" novalidate>
+            <div class="mb-3">
+              <label for="inputEmail" class="form-label">Email address</label>
+              <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" name="email" [(ngModel)]="signUpFormValue.email" #email="ngModel" required>
+              @if ((email.touched || rf.submitted) && email.errors?.['required']) {
+                <span class="text-danger">
+                  User email is required
+                </span>
+              }
+            </div>
+            <div class="mb-3">
+              <label for="inputMobile" class="form-label">Mobile number</label>
+              <input type="tel" class="form-control" id="inputMobile" aria-describedby="mobileHelp" name="mobile" [(ngModel)]="signUpFormValue.mobile" #mobile="ngModel" required>
+              @if ((mobile.touched || rf.submitted) && mobile.errors?.['required']) {
+                <span class="text-danger">
+                  User mobile number is required
+                </span>
+              }
+            </div>
+            <div class="mb-3">
+              <label for="inputPassword" class="form-label">Password</label>
+              <input type="password" class="form-control" id="inputPassword" name="password" [(ngModel)]="signUpFormValue.password" #password="ngModel" required>
+              @if ((password.touched || rf.submitted) && password.errors?.['required']) {
+                <span class="text-danger">
+                  Please provive the password
+                </span>
+              }
+            </div>
+            <button type="submit" class="btn btn-primary" [disabled]="!rf.valid">Register</button>
+            <div class="mb-3">
+              <p>Registerd user, Didn't rember your password? click to <a routerLink="/forgot-password">Recover</a></p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

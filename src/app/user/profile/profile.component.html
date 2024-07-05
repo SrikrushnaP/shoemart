@@ -1,1 +1,78 @@
-<p>profile works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3 mt-3">
+      <!-- Side bar will go here -->
+    </div>
+    <div class="col-lg-9 mb-3 mt-3">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="fw-normal mb-0 text-black">Hi {{userDetails?.fName}} - It's few info about you</h3>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card mb-4">
+            <div class="card-body text-center">
+              <img src={{userDetails?.profileImg}} alt="avatar"
+                class="rounded-circle img-fluid" style="width: 150px;">
+              <h5 class="my-4">{{userDetails?.fName}} {{userDetails?.lName}}</h5>
+              <div class="d-flex justify-content-center mb-2">
+                <a href="user/profile-update" type="button" class="btn btn-outline-primary">Edit Profile</a> &nbsp;
+                <a href="user/saved-address" type="button" class="btn btn-outline-primary">View Addresses</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-8">
+          <div class="card mb-4">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Email</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{userDetails?.email}}</p>
+                </div>
+              </div>
+              <hr>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Mobile</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{userDetails?.mobile}}</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">DOB</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{userDetails?.dob}}</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Profesion</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{userDetails?.profesion}}</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Role</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">Valuable {{userDetails?.role}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
