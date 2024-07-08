@@ -4,109 +4,36 @@
   <div class="row">
     <!-- First Catrgory Start -->
     <div class="mt-4 mb-4">
-      <h2 class="pb-2 border-bottom">Top Products</h2>
+      <h2 class="pb-2 border-bottom">Tranding Products</h2>
       <!-- START PRODUCT DISPLAY -->
       <div class="row">
-        <div class="col col-md-3 col-6 mb-2">
-          <div class="card h-100">
-            <!-- Product image-->
-            <a routerLink="/product-view">
-              <img class="card-img-top" src="assets/images/products/1.webp" alt="" />
-            </a>
-            <!-- Product details-->
-            <div class="card-body p-4">
-              <div class="text-center">
-                <!-- Product name-->
-                <h5 class="fw-bolder">Test product</h5>
-                <!-- Product price-->
-                &#8377; 500
+        @for (product of productList; track $index) {
+          <div class="col col-md-3 col-6 mb-2">
+            <div class="card h-100">
+              <!-- Product image-->
+              <a routerLink="/product-view/{{product?.id}}">
+                <img class="card-img-top" src={{product?.image}} alt={{product?.name}} />
+              </a>
+              <!-- Product details-->
+              <div class="card-body p-4">
+                <div class="text-center">
+                  <!-- Product name-->
+                  <h5 class="fw-bolder">{{product?.name}}</h5>
+                  <!-- Product price-->
+                  &#8377; {{product?.dp}} <span class="text-decoration-line-through">{{product?.mrp}}</span>
+                </div>
               </div>
-            </div>
-            <!-- Product actions-->
-            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-              <div class="d-grid">
-                <button class="btn btn-info me-2" type="button">
-                  Add to cart
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col col-md-3 col-6 mb-2">
-          <div class="card h-100">
-            <!-- Product image-->
-            <a routerLink="/product-view">
-              <img class="card-img-top" src="assets/images/products/2.webp" alt="" />
-            </a>
-            <!-- Product details-->
-            <div class="card-body p-4">
-              <div class="text-center">
-                <!-- Product name-->
-                <h5 class="fw-bolder">Test product</h5>
-                <!-- Product price-->
-                &#8377; 500
-              </div>
-            </div>
-            <!-- Product actions-->
-            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-              <div class="d-grid">
-                <button class="btn btn-info me-2" type="button">
-                  Add to cart
-                </button>
+              <!-- Product actions-->
+              <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                <div class="d-grid">
+                  <button class="btn btn-info me-2" type="button">
+                    Add to cart
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="col col-md-3 col-6 mb-2">
-          <div class="card h-100">
-            <!-- Product image-->
-            <a routerLink="/product-view">
-              <img class="card-img-top" src="assets/images/products/3.webp" alt="" />
-            </a>
-            <!-- Product details-->
-            <div class="card-body p-4">
-              <div class="text-center">
-                <!-- Product name-->
-                <h5 class="fw-bolder">Test product</h5>
-                <!-- Product price-->
-                &#8377; 500
-              </div>
-            </div>
-            <!-- Product actions-->
-            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-              <div class="d-grid">
-                <button class="btn btn-info me-2" type="button">
-                  Add to cart
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col col-md-3 col-6 mb-2">
-          <div class="card h-100">
-            <!-- Product image-->
-            <a routerLink="/product-view">
-              <img class="card-img-top" src="assets/images/products/4.webp" alt="" />
-            </a>
-            <!-- Product details-->
-            <div class="card-body p-4">
-              <div class="text-center">
-                <!-- Product name-->
-                <h5 class="fw-bolder">Test product</h5>
-                <!-- Product price-->
-                &#8377; 500
-              </div>
-            </div>
-            <!-- Product actions-->
-            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-              <div class="d-grid">
-                <button class="btn btn-info me-2" type="button">
-                  Add to cart
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+        }
       </div>
       <!-- /END PRODUCT DISPLAY -->
     </div>
