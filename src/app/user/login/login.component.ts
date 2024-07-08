@@ -24,8 +24,9 @@ export class LoginComponent {
         this.user_data = data;
         if (this.user_data.length == 1) {
           // TODO: JWT auth implimentation
-          sessionStorage.setItem("userSessionId", this.user_data[0].id);
+          sessionStorage.setItem("userSessionToken", this.user_data[0].id);
           sessionStorage.setItem("userFname", this.user_data[0].fName);
+          this.userService.isLoggedIn$.next(true);
           this.router.navigate(['/home']);
         } else {
           alert("Invalid")
