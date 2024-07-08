@@ -1,1 +1,38 @@
-<p>product-view works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3 mt-3">
+      <!-- <app-sidebar></app-sidebar> -->
+    </div>
+    <div class="col-lg-9 mb-3 mt-3">
+      <div class="row gx-4 gx-lg-5 align-items-center">
+        <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="{{productDetails?.image}}"
+            alt="Printed Men's Round Neck 100% Cotton T-Shirt"></div>
+        <div class="col-md-6">
+          <h1 class="display-5 fw-bolder">{{productDetails?.name}}</h1>
+          <div class="mb-1">
+            <div class="fs-2">
+              <span>Price ₹</span>
+              <span>{{productDetails?.dp}}</span>
+            </div>
+            <div class="fs-6">
+              <span>M.R.P.: ₹</span>
+              <span class="text-decoration-line-through">{{productDetails?.dp}}</span>
+            </div>
+          </div>
+          <div class="small mb-1">From {{productDetails?.vendorName}}</div>
+          <p class="lead">{{productDetails?.description}}</p>
+          <div class="d-flex">
+            <button class="btn btn-outline-primary flex-shrink-0 me-2" type="button" (click)="addItemTocart(productId)">
+              <i class="bi-cart-fill me-1"></i>
+              Add to cart
+            </button>
+            <a href="../pages/payment.html" class="btn btn-outline-primary flex-shrink-0" type="button">
+              <i class="bi-cart-check-fill me-1"></i>
+              Buy Now
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

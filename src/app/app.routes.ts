@@ -25,7 +25,7 @@ export const routes: Routes = [
   { path: 'contact', component: ContactUsComponent },
 
   { path: 'products-list', component: ProductsListComponent },
-  { path: 'product-view', component: ProductViewComponent },
+  { path: 'product-view/:id', component: ProductViewComponent },
 
   { path: 'cart-view', component: ViewCartComponent },
   { path: 'cart-checkout', component: CheckoutCartComponent },
