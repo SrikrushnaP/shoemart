@@ -1,13 +1,18 @@
 <div class="container">
   <div class="row">
-    <div class="col-lg-3 mt-3">
-      <!-- <app-sidebar></app-sidebar> -->
-    </div>
-    <div class="col-lg-9 mb-3 mt-3">
+    <!-- <div class="col-lg-3 mt-3">
+      <app-sidebar></app-sidebar>
+    </div> -->
+    <div class="col-lg-12 mb-3 mt-3">
       <div class="row gx-4 gx-lg-5 align-items-center">
-        <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="{{productDetails?.image}}"
-            alt="Printed Men's Round Neck 100% Cotton T-Shirt"></div>
-        <div class="col-md-6">
+        <div class="col-md-5 product-image">
+          <img class="card-img-top mb-5 mb-md-0 image" src="{{productDetails?.image}}"
+            alt="Printed Men's Round Neck 100% Cotton T-Shirt">
+            <div class="heart-icon" (click)="toggleItemInWishlist(productDetails?.id)">
+              <i class="bi bi-heart-fill"  [ngClass]="isInWishList ? 'text-danger' : ''"></i>
+            </div>
+          </div>
+        <div class="col-md-7">
           <h1 class="display-5 fw-bolder">{{productDetails?.name}}</h1>
           <div class="mb-1">
             <div class="fs-2">

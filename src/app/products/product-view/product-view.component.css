@@ -1,0 +1,14 @@
+.product-image{
+  position: relative;
+  display: inline-block;
+}
+.heart-icon {
+  position: absolute;
+  top: 1%;
+  left: 90%;
+  cursor: pointer;
+}
+
+.heart-icon i {
+  color: rgb(209, 205, 205);
+}
