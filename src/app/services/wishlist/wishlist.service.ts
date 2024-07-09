@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '../core/api.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +8,7 @@ import { ApiService } from '../core/api.service';
 export class WishlistService {
 
   private wishlistBaseUrl = "http://localhost:3000/wishlist";
+  wishlistLength$ = new BehaviorSubject<Number>(0);
 
   constructor(private apiService: ApiService) { }
 

@@ -42,6 +42,7 @@ export class ProductViewComponent {
   getUserWishlistData(){
     this.wishlistService.getUserWishlist(this.userSessionId).subscribe((res)=>{
       this.userWishList = res[0].products_id;
+      this.wishlistService.wishlistLength$.next(this.userWishList.length)
       this.checkProductInWishlist();
     })
   }
@@ -67,10 +68,10 @@ export class ProductViewComponent {
       this.toggWishlistMsg = "Removed from your Wishlist";
     }
     this.wishlistService.updatewishlist(this.userSessionId, {products_id:this.userWishList}).subscribe({
-      next: ()=>{
-
+      next: (res)=>{
+        this.wishlistService.wishlistLength$.next(res.products_id.length)
       },
-      error: ()=>{
+      error: (err)=>{
 
       },
       complete:()=>{
