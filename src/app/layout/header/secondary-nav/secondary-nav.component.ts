@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { CartService } from '../../../services/cart/cart.service';
 
 @Component({
   selector: 'app-secondary-nav',
@@ -8,6 +9,15 @@ import { RouterLink } from '@angular/router';
   templateUrl: './secondary-nav.component.html',
   styleUrl: './secondary-nav.component.css'
 })
-export class SecondaryNavComponent {
+export class SecondaryNavComponent implements OnInit{
+
+  cartQuantity: any = 0;
+  constructor(private cartService: CartService){}
+
+  ngOnInit(): void {
+    this.cartService.cartQuantity$.subscribe(res=>{
+      this.cartQuantity = res;
+    })
+  }
 
 }

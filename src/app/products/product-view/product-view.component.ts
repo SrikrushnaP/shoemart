@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../services/product/product.service';
 import { NgClass } from '@angular/common';
 import { WishlistService } from '../../services/wishlist/wishlist.service';
+import { CartService } from '../../services/cart/cart.service';
 
 @Component({
   selector: 'app-product-view',
@@ -20,7 +21,11 @@ export class ProductViewComponent {
   isInWishList: boolean = false;
   toggWishlistMsg: String = "";
 
-  constructor(private activeRoute: ActivatedRoute, private productService: ProductService, private wishlistService: WishlistService ) { }
+  // userCart: any;
+  cartId: any;
+  cartProductsIdQty: any;
+
+  constructor(private activeRoute: ActivatedRoute, private productService: ProductService, private wishlistService: WishlistService, private cartService: CartService ) { }
 
   ngOnInit() {
     this.userSessionId = sessionStorage.getItem("userSessionToken");
@@ -31,6 +36,8 @@ export class ProductViewComponent {
     })
 
     this.getUserWishlistData();
+
+    this.getUserCartData();
   }
 
   getProductDetailsById(productId: Number){
@@ -39,6 +46,9 @@ export class ProductViewComponent {
     })
   }
 
+/*...............................||
+|| Wishlist Realted Logic: Start ||
+||...............................*/
   getUserWishlistData(){
     this.wishlistService.getUserWishlist(this.userSessionId).subscribe((res)=>{
       this.userWishList = res[0].products_id;
@@ -54,8 +64,6 @@ export class ProductViewComponent {
       this.isInWishList = false;
     }
   }
-
-  addItemTocart(id: any){}
 
   toggleItemInWishlist(id: any){
     if(!this.isInWishList){
@@ -79,4 +87,53 @@ export class ProductViewComponent {
       }
     })
   }
+/*.............................||
+|| Wishlist Realted Logic: End ||
+||.............................*/
+
+
+/*...........................||
+|| Cart Realted Logic: Start ||
+||...........................*/
+
+getUserCartData(){
+  this.cartService.getUserCartData(this.userSessionId).subscribe((res)=>{
+    // this.userCart = res[0];
+    this.cartId = res[0].id;
+    this.cartProductsIdQty = res[0].product_id_quantity;
+    // console.log("cartId", this.cartId)
+    // console.log("cartProductsIdQty", this.cartProductsIdQty.length)
+    this.cartService.cartQuantity$.next(this.cartProductsIdQty.length)
+  })
+}
+
+checkProductInCart(productId: number){
+  // Check the product is alarya available in cart or not
+  const productExist = this.cartProductsIdQty.some((el: any) => {
+    return el.product_id === Number(productId);
+  })
+  return productExist;
+}
+
+
+addItemTocart(productId: any){
+  if(!this.checkProductInCart(productId)){
+    // alert("Add the product to cart")
+    // Logic to Add the product into the cart
+    this.cartProductsIdQty.push({ product_id: Number(productId), quantity: 1 });
+    this.cartService.updateCartProductQuantity(this.cartId, {product_id_quantity: this.cartProductsIdQty}).subscribe({
+      next: (res)=>{
+        this.cartService.cartQuantity$.next(res.product_id_quantity.length)
+        console.log("After add to cart::::::", res)
+      }
+    })
+  } else {
+    alert("Product already exist in the cart, update the product quntity in cart")
+  }
+}
+
+
+/*.........................||
+|| Cart Realted Logic: End ||
+||.........................*/
 }
