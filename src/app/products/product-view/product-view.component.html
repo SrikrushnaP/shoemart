@@ -8,7 +8,7 @@
         <div class="col-md-5 product-image">
           <img class="card-img-top mb-5 mb-md-0 image" src="{{productDetails?.image}}"
             alt="Printed Men's Round Neck 100% Cotton T-Shirt">
-            <div class="heart-icon" (click)="toggleItemInWishlist(productDetails?.id)">
+            <div class="heart-icon" (click)="toggleProductInWishlist(productDetails?.id)">
               <i class="bi bi-heart-fill"  [ngClass]="isInWishList ? 'text-danger' : ''"></i>
             </div>
           </div>
@@ -27,7 +27,7 @@
           <div class="small mb-1">From {{productDetails?.vendorName}}</div>
           <p class="lead">{{productDetails?.description}}</p>
           <div class="d-flex">
-            <button class="btn btn-outline-primary flex-shrink-0 me-2" type="button" (click)="addItemTocart(productDetails?.id)">
+            <button class="btn btn-outline-primary flex-shrink-0 me-2" type="button" (click)="addProductTocart(productDetails?.id)">
               <i class="bi-cart-fill me-1"></i>
               Add to cart
             </button>
