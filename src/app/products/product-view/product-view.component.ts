@@ -20,6 +20,7 @@ export class ProductViewComponent {
   userWishList: any = [];
   isInWishList: boolean = false;
   toggWishlistMsg: String = "";
+  wishListId: any;
 
   // userCart: any;
   cartId: any;
@@ -52,6 +53,7 @@ export class ProductViewComponent {
   getUserWishlistData(){
     this.wishlistService.getUserWishlist(this.userSessionId).subscribe((res)=>{
       this.userWishList = res[0].products_id;
+      this.wishListId = res[0].id;
       this.wishlistService.wishlistLength$.next(this.userWishList.length)
       this.checkProductInWishlist();
     })
@@ -75,7 +77,7 @@ export class ProductViewComponent {
       this.isInWishList = false;
       this.toggWishlistMsg = "Removed from your Wishlist";
     }
-    this.wishlistService.updatewishlist(this.userSessionId, {products_id:this.userWishList}).subscribe({
+    this.wishlistService.updatewishlist(this.wishListId, {products_id:this.userWishList}).subscribe({
       next: (res)=>{
         this.wishlistService.wishlistLength$.next(res.products_id.length)
       },
@@ -98,11 +100,8 @@ export class ProductViewComponent {
 
 getUserCartData(){
   this.cartService.getUserCartData(this.userSessionId).subscribe((res)=>{
-    // this.userCart = res[0];
     this.cartId = res[0].id;
     this.cartProductsIdQty = res[0].product_id_quantity;
-    // console.log("cartId", this.cartId)
-    // console.log("cartProductsIdQty", this.cartProductsIdQty.length)
     this.cartService.cartQuantity$.next(this.cartProductsIdQty.length)
   })
 }
@@ -118,7 +117,6 @@ checkProductInCart(productId: number){
 
 addItemTocart(productId: any){
   if(!this.checkProductInCart(productId)){
-    // alert("Add the product to cart")
     // Logic to Add the product into the cart
     this.cartProductsIdQty.push({ product_id: Number(productId), quantity: 1 });
     this.cartService.updateCartProductQuantity(this.cartId, {product_id_quantity: this.cartProductsIdQty}).subscribe({

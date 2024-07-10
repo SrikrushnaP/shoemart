@@ -16,8 +16,8 @@ export class WishlistService {
     return this.apiService.get(this.wishlistBaseUrl+'?user_id='+userId);
   }
 
-  updatewishlist(userId:any, updateWishlistData: any){
-    return this.apiService.patch(this.wishlistBaseUrl+"/"+userId, updateWishlistData)
+  updatewishlist(wishlistId:any, updateWishlistData: any){
+    return this.apiService.patch(this.wishlistBaseUrl+"/"+wishlistId, updateWishlistData)
   }
 
   viewWishlistProducts(queryParam: any){
