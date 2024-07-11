@@ -37,14 +37,12 @@ export class ViewCartComponent implements OnInit {
   ngOnInit(): void {
     if (typeof window !== 'undefined') {
       this.userSessionId = sessionStorage.getItem("userSessionToken");
-      this.cartDataService.getUserCartData(this.userSessionId);
-      this.cartService.cartIdQuantity$.subscribe((res)=>{
-        if(res.length){
-          this.cartProductIdQty = res;
-          this.cartProductIdQty.sort((a:any, b:any) => (a.product_id > b.product_id ? 1 : -1));
-          this.productsQueryString = this.cartDataService.generateProductQueryString(this.cartProductIdQty);
-          this.getCartProductsWithDetail(this.productsQueryString)
-        }
+      this.cartService.getUserCartData(this.userSessionId).subscribe((res)=>{
+        this.cartData = res[0];
+        this.cartProductIdQty = res[0].product_id_quantity;
+        this.cartProductIdQty.sort((a:any, b:any) => (a.product_id > b.product_id ? 1 : -1));
+        this.productsQueryString = this.cartDataService.generateProductQueryString(this.cartProductIdQty);
+        this.getCartProductsWithDetail(this.productsQueryString)
       })
     }
   }
@@ -59,11 +57,16 @@ export class ViewCartComponent implements OnInit {
   }
 
   toalCartProductQuantity(productIdQty: any, productsDeatil: any){
+    let totalCartQtyTemp=0, totalCartPriceTemp=0, totalCartMrpPriceTemp=0;
     for(let i=0; i<productIdQty.length; i++){
-      this.totalCartQty += productIdQty[i].quantity;
-      this.totalCartPrice += productIdQty[i].quantity*productsDeatil[i].dp;
-      this.totalCartMrpPrice += productIdQty[i].quantity*productsDeatil[i].mrp;
+      totalCartQtyTemp += productIdQty[i].quantity;
+      totalCartPriceTemp += productIdQty[i].quantity*productsDeatil[i].dp;
+      totalCartMrpPriceTemp += productIdQty[i].quantity*productsDeatil[i].mrp;
     }
+
+    this.totalCartQty = totalCartQtyTemp;
+    this.totalCartPrice= totalCartPriceTemp;
+    this.totalCartMrpPrice = totalCartMrpPriceTemp;
   }
 
 
@@ -71,5 +74,19 @@ export class ViewCartComponent implements OnInit {
   changeCartProductQuantity(cartProductIndex: any, event:any){}
 
 
-  removeProductFromCart(cartProductIndex: any, productId:any){}
+  removeProductFromCart(cartProductIndex: any, productId:any){
+    this.cartProductTobeRemove = [...this.cartProductIdQty]
+    this.cartProductTobeRemove.splice(cartProductIndex, 1);
+    this.cartService.updateCartProductQuantity(this.cartData.id, {product_id_quantity: this.cartProductTobeRemove}).subscribe((res)=>{
+      this.cartProductIdQty = res.product_id_quantity;
+
+      // After update in db change in frontend without calling backend API
+      this.cartProductList.splice(cartProductIndex, 1);
+      // this.cartProductIdQty.splice(cartProductIndex, 1);
+      this.toalCartProductQuantity(this.cartProductTobeRemove, this.cartProductList);
+      this.cartData.product_id_quantity = this.cartProductTobeRemove;
+      this.cartService.cartIdQuantity$.next(this.cartProductTobeRemove)
+
+    })
+  }
 }

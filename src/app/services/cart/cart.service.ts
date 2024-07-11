@@ -22,6 +22,7 @@ export class CartService {
   }
 
   updateCartProductQuantity(cart_id:any, updateCartData: any){
+    console.log(this.cartBaseUrl +"/"+ cart_id)
     return this.apiService.patch(this.cartBaseUrl +"/"+ cart_id, updateCartData)
   }
 }
