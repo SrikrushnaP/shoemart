@@ -15,8 +15,9 @@ export class SecondaryNavComponent implements OnInit{
   constructor(private cartService: CartService){}
 
   ngOnInit(): void {
-    this.cartService.cartQuantity$.subscribe(res=>{
-      this.cartQuantity = res;
+    this.cartService.cartIdQuantity$.subscribe((res)=>{
+      this.cartQuantity = res.length;
+      // console.log("Res::::", res.length)
     })
   }
 

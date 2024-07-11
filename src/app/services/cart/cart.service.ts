@@ -9,7 +9,7 @@ export class CartService {
 
   private cartBaseUrl = "http://localhost:3000/cart";
   wishlistLength$ = new BehaviorSubject<Number>(0);
-  cartQuantity$ = new BehaviorSubject<Number>(0);
+  cartIdQuantity$ = new BehaviorSubject<any>([]);
 
   userSessionId: any;
 
