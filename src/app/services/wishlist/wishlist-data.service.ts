@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { WishlistService } from './wishlist.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -46,5 +47,13 @@ export class WishlistDataService {
         console.log(this.toggWishlistMsg)
       }
     })
+  }
+
+  generateProductQueryString(productIdQuantity: any): Observable<any>{
+    let productQueryString: any = "";
+    productIdQuantity.forEach((element:any) => {
+      productQueryString+="id="+element+"&";
+    });
+    return productQueryString;
   }
 }
