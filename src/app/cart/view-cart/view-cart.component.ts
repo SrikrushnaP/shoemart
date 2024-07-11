@@ -19,12 +19,8 @@ export class ViewCartComponent implements OnInit {
   cartProductList: any = [];
   cartData: any;
   totalCartPrice: any = 0;
-  totalCartQty: any = 0
-  totalCartMrpPrice: any = 0
-
-  productsQuantityTobeUpdated: any;
-  updatedCartData : any;
-  cartProductTobeRemove: any;
+  totalCartQty: any = 0;
+  totalCartMrpPrice: any = 0;
 
   productsQueryString:any;
 
@@ -71,21 +67,35 @@ export class ViewCartComponent implements OnInit {
 
 
 
-  changeCartProductQuantity(cartProductIndex: any, event:any){}
+  changeCartProductQuantity(cartProductIndex: any, event:any){
+    let productsQuantityTobeUpdatedTemp = this.cartData.product_id_quantity;
+    productsQuantityTobeUpdatedTemp[cartProductIndex].quantity = parseInt(event.target.value);
+
+    // Later change to ui validation
+    if(productsQuantityTobeUpdatedTemp[cartProductIndex].quantity<1){
+      alert("product quantity should be 1 or more");
+      return;
+    }
+
+    this.cartService.updateCartProductQuantity(this.cartData.id, {product_id_quantity: productsQuantityTobeUpdatedTemp}).subscribe((data)=>{
+      // console.log("cart updated", data);
+    this.toalCartProductQuantity(productsQuantityTobeUpdatedTemp, this.cartProductList);
+    })
+  }
 
 
   removeProductFromCart(cartProductIndex: any, productId:any){
-    this.cartProductTobeRemove = [...this.cartProductIdQty]
-    this.cartProductTobeRemove.splice(cartProductIndex, 1);
-    this.cartService.updateCartProductQuantity(this.cartData.id, {product_id_quantity: this.cartProductTobeRemove}).subscribe((res)=>{
+    let cartProductTobeRemoveTemp = [...this.cartProductIdQty]
+    cartProductTobeRemoveTemp.splice(cartProductIndex, 1);
+    this.cartService.updateCartProductQuantity(this.cartData.id, {product_id_quantity: cartProductTobeRemoveTemp}).subscribe((res)=>{
       this.cartProductIdQty = res.product_id_quantity;
 
       // After update in db change in frontend without calling backend API
       this.cartProductList.splice(cartProductIndex, 1);
       // this.cartProductIdQty.splice(cartProductIndex, 1);
-      this.toalCartProductQuantity(this.cartProductTobeRemove, this.cartProductList);
-      this.cartData.product_id_quantity = this.cartProductTobeRemove;
-      this.cartService.cartIdQuantity$.next(this.cartProductTobeRemove)
+      this.toalCartProductQuantity(cartProductTobeRemoveTemp, this.cartProductList);
+      this.cartData.product_id_quantity = cartProductTobeRemoveTemp;
+      this.cartService.cartIdQuantity$.next(cartProductTobeRemoveTemp)
 
     })
   }
