@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-lg-3 mt-3">
+    <div class="col-lg-2 mt-2">
       <!-- Side bar will go here -->
     </div>
     <div class="col-lg-9 mb-3 mt-3">
@@ -11,12 +11,12 @@
         <div class="col-md-4">
           <div class="card mb-4">
             <div class="card-body text-center">
-              <img src={{userDetails?.profileImg}} alt="avatar"
+              <img src="{{userDetails?.profileImg}}" onerror="this.src='assets/images/Unisex-Avatar.png'"alt="avatar"
                 class="rounded-circle img-fluid" style="width: 150px;">
               <h5 class="my-4">{{userDetails?.fName}} {{userDetails?.lName}}</h5>
               <div class="d-flex justify-content-center mb-2">
-                <a href="user/profile-update" type="button" class="btn btn-outline-primary">Edit Profile</a> &nbsp;
-                <a href="user/saved-address" type="button" class="btn btn-outline-primary">View Addresses</a>
+                <a (click)="editProfile()" type="button" class="btn btn-outline-primary">Edit Profile</a> &nbsp;
+                <a (click)="viewSavedAddress()" type="button" class="btn btn-outline-primary">View Addresses</a>
               </div>
             </div>
           </div>
@@ -39,7 +39,7 @@
                   <p class="mb-0">Mobile</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">{{userDetails?.mobile}}</p>
+                  <p class="text-muted mb-0">{{userDetails?.mobNumber}}</p>
                 </div>
               </div>
               <hr>
@@ -49,15 +49,6 @@
                 </div>
                 <div class="col-sm-9">
                   <p class="text-muted mb-0">{{userDetails?.dob}}</p>
-                </div>
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col-sm-3">
-                  <p class="mb-0">Profesion</p>
-                </div>
-                <div class="col-sm-9">
-                  <p class="text-muted mb-0">{{userDetails?.profesion}}</p>
                 </div>
               </div>
               <hr>

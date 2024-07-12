@@ -15,6 +15,7 @@ import { ViewCartComponent } from './cart/view-cart/view-cart.component';
 import { CheckoutCartComponent } from './cart/checkout-cart/checkout-cart.component';
 import { PolicyInfoComponent } from './pages/policy-info/policy-info.component';
 import { WishlistComponent } from './wishlist/wishlist/wishlist.component';
+import { OrderListComponent } from './order/order-list/order-list.component';
 
 
 export const routes: Routes = [
@@ -31,6 +32,7 @@ export const routes: Routes = [
   { path: 'cart-view', component: ViewCartComponent },
   { path: 'cart-checkout', component: CheckoutCartComponent },
   { path: 'wishlist', component:  WishlistComponent},
+  { path: 'orders', component:  OrderListComponent},
 
   { path: 'profile', component: ProfileComponent },
   // { path: 'orders', component: LoginComponent },

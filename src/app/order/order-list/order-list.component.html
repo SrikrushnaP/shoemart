@@ -1,0 +1,52 @@
+<div class="container">
+  <section class="h-100 py-5">
+    <div class="row d-flex justify-content-center h-100">
+      <!-- If there is no order for the user-->
+       @if (!orderList?.length) {
+        <div>
+          <img src="../../../assets/images/empty-shopping-cart.png" class="img-fluid rounded mx-auto d-block"
+            alt="image name">
+          <div class="text-center mb-5 mt-5">
+            <h3>There is no order yet. </h3>
+            <a href="product/products-list" class="btn btn-info btn-lg mt-4">Shop now</a>
+          </div>
+        </div>
+      } @else {
+        <div class="col-md-10 col-12">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <h3 class="fw-normal mb-0 text-black">Your All Order</h3>
+          </div>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Total Quantity</th>
+                <th scope="col">Order date</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody class="table-group-divider">
+              @for (order of orderList; track $index) {
+                <tr>
+                  <th scope="row">{{$index+1}}</th>
+                  <td>{{order.products[0].name}}
+                    @if (order.products.length-1) {
+                      <b>+ {{order.products.length-1}} more items</b>
+                    }
+                  </td>
+                  <td>{{order.products.length}}</td>
+                  <td>{{order.dateTime | date : 'short'}}</td> <!-- TODO: create your own date pipe -->
+                  <td>
+                    <a class="text-info" (click)="viewOrederDetails()"><i class="bi bi-eye"></i></a> &nbsp;
+                    <a class="text-warning" (click)="trackOreder()"><i class="bi bi-truck"></i></a> &nbsp;
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      }
+    </div>
+  </section>
+</div>

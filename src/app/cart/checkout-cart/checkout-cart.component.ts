@@ -87,8 +87,9 @@ export class CheckoutCartComponent {
       complete: () => {
         // Remove item from cart
         this.cartService.updateCartProductQuantity(this.cartDataService.cartId$.value, {product_id_quantity: []}).subscribe((data)=>{
-          console.log("cart updated", data);
+          // console.log("cart updated", data);
           this.cartService.cartIdQuantity$.next(data.product_id_quantity)
+          this.router.navigate(['/orders'])
         })
       }
     })
