@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ProductService } from '../../services/product/product.service';
 
 @Component({
   selector: 'app-products-list',
@@ -9,5 +11,23 @@ import { Component } from '@angular/core';
 })
 export class ProductsListComponent {
   productList: any;
+  categoryValue:any;
+
+  constructor( private activeRoute: ActivatedRoute, private productService: ProductService){}
+  ngOnInit(){
+    this.activeRoute.params.subscribe(data => {
+      this.categoryValue = data['categoryName'];
+      this.getProductDetailsCategoryName("category", this.categoryValue);
+    })
+  }
+
+
+  getProductDetailsCategoryName(category:any, categoryValue:any){
+    this.productService.viewAllProductByParam(category, categoryValue).subscribe(res=>{
+      console.log("Res::::::::", res)
+      this.productList = res
+    })
+  }
+
   addItemTocart(productId: any){}
 }

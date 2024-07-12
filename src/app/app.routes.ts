@@ -25,7 +25,7 @@ export const routes: Routes = [
   { path: 'policy', component: PolicyInfoComponent },
   { path: 'contact', component: ContactUsComponent },
 
-  { path: 'products-list', component: ProductsListComponent },
+  { path: 'products-list/:categoryName', component: ProductsListComponent },
   { path: 'product-view/:id', component: ProductViewComponent },
 
   { path: 'cart-view', component: ViewCartComponent },
