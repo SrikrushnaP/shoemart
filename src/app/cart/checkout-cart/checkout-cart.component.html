@@ -42,15 +42,15 @@
               }
             </div>
             <div class="col-12">
-              <label for="contactNum" class="form-label">Contact Number</label>
-              <input type="text" class="form-control" id="contactNum" placeholder="1234567890"
-                formControlName="contactNum">
+              <label for="mobNumber" class="form-label">Contact Number</label>
+              <input type="tel" class="form-control" id="mobNumber" placeholder="1234567890"
+                formControlName="mobNumber">
               <div class="text-danger">
-                @if (addressFormCtrl['contactNum'].errors?.['required'] && (addressFormCtrl['contactNum'].touched || addressFormCtrl['contactNum'].dirty)) {
+                @if (addressFormCtrl['mobNumber'].errors?.['required'] && (addressFormCtrl['mobNumber'].touched || addressFormCtrl['mobNumber'].dirty)) {
                   <span>
                     Contact Number is required
                   </span>
-                } @else if (addressFormCtrl['contactNum'].errors?.['pattern'] && addressFormCtrl['contactNum'].touched) {
+                } @else if (addressFormCtrl['mobNumber'].errors?.['pattern'] && addressFormCtrl['mobNumber'].touched) {
                   <span>
                     Please enter a valid Contact Number
                   </span>

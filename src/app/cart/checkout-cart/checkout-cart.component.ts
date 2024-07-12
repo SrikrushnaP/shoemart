@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CartDataService } from '../../services/cart/cart-data.service';
 import { Router } from '@angular/router';
+import { UserService } from '../../services/user/user.service';
+import { OrderService } from '../../services/order/order.service';
+import { CartService } from '../../services/cart/cart.service';
 
 @Component({
   selector: 'app-checkout-cart',
@@ -12,10 +15,11 @@ import { Router } from '@angular/router';
 })
 export class CheckoutCartComponent {
   addAddressForm!: FormGroup;
+  userDetailedData: any;
 
   userSessionId: any;
-  constructor(private fb: FormBuilder, private cartDataService: CartDataService, private router: Router){
-    if(this.cartDataService.cartCheckoutData$.value.length == 0){
+  constructor(private fb: FormBuilder, private cartDataService: CartDataService, private router: Router, private userService: UserService, private orderService: OrderService, private cartService: CartService){
+    if(this.cartDataService.cartCheckoutData$.value.length == 0 || this.cartDataService.cartId$.value == 0){
       this.router.navigate(["/cart-view"]);
       return;
     }
@@ -27,7 +31,7 @@ export class CheckoutCartComponent {
     this.addAddressForm = this.fb.group({
         fName: ["", Validators.required],
         lName: ["", Validators.required],
-        contactNum: ["", [Validators.required, Validators.pattern(/^[6-9]\d{9}$/)]],
+        mobNumber: ["", [Validators.required, Validators.pattern(/^[6-9]\d{9}$/)]],
         line1: ["", Validators.required],
         line2: [""],
         city: ["", Validators.required],
@@ -35,6 +39,28 @@ export class CheckoutCartComponent {
         postalCode: ["", [Validators.required, Validators.pattern(/^[1-9][0-9]{5}$/)]],
         transavtionRefNum: ["", [Validators.required]],
       });
+
+      this.getUserDetails();
+  }
+
+  getUserDetails(){
+    this.userService.getUserDetails(this.userSessionId).subscribe({
+      next: res =>{
+        // Here We required only address
+        // console.log(res.address)
+        this.userDetailedData = res.address;
+        this.addAddressForm.patchValue({
+          fName: res.fName,
+          lName: res.lName,
+          mobNumber: res.mobNumber,
+          line1: res.address.line1,
+          line2: res.address.line1,
+          city: res.address.city,
+          state: res.address.state,
+          postalCode: res.address.postalCode
+        });
+      }
+    })
   }
 
   placeOrder(){
@@ -42,18 +68,30 @@ export class CheckoutCartComponent {
       userId: this.userSessionId,
       fName: this.addAddressForm.value.fName,
       lName: this.addAddressForm.value.lName,
-      contact: this.addAddressForm.value.contactNum,
+      mobNumber: this.addAddressForm.value.mobNumber,
       products: this.cartDataService.cartCheckoutData$.value,
       deliveryAddress: {
-        id: 0,
-        addLine1: this.addAddressForm.value.line1,
-        addLine2: this.addAddressForm.value.line2,
+        id:Math.floor( Math.random() * Date.now()),
+        line1: this.addAddressForm.value.line1,
+        line2: this.addAddressForm.value.line2,
         city: this.addAddressForm.value.city,
         state: this.addAddressForm.value.state,
-        zipCode: this.addAddressForm.value.postalCode
+        postalCode: this.addAddressForm.value.postalCode
       },
       dateTime: Date.now()
     }
+    this.orderService.createOrder(orderDetails).subscribe({
+      next: (res) => {
+
+      },
+      complete: () => {
+        // Remove item from cart
+        this.cartService.updateCartProductQuantity(this.cartDataService.cartId$.value, {product_id_quantity: []}).subscribe((data)=>{
+          console.log("cart updated", data);
+          this.cartService.cartIdQuantity$.next(data.product_id_quantity)
+        })
+      }
+    })
     console.log(orderDetails)
   }
 

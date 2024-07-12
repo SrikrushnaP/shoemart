@@ -35,11 +35,13 @@ export class ViewCartComponent implements OnInit {
     if (typeof window !== 'undefined') {
       this.userSessionId = sessionStorage.getItem("userSessionToken");
       this.cartService.getUserCartData(this.userSessionId).subscribe((res)=>{
-        this.cartData = res[0];
-        this.cartProductIdQty = res[0].product_id_quantity;
-        this.cartProductIdQty.sort((a:any, b:any) => (a.product_id > b.product_id ? 1 : -1));
-        this.productsQueryString = this.cartDataService.generateProductQueryString(this.cartProductIdQty);
-        this.getCartProductsWithDetail(this.productsQueryString)
+        if(res[0].product_id_quantity.length){
+          this.cartData = res[0];
+          this.cartProductIdQty = res[0].product_id_quantity;
+          this.cartProductIdQty.sort((a:any, b:any) => (a.product_id > b.product_id ? 1 : -1));
+          this.productsQueryString = this.cartDataService.generateProductQueryString(this.cartProductIdQty);
+          this.getCartProductsWithDetail(this.productsQueryString)
+        }
       })
     }
   }
@@ -103,6 +105,7 @@ export class ViewCartComponent implements OnInit {
 
   cartChckout(){
     this.cartDataService.cartCheckoutData$.next(this.cartProductList);
+    this.cartDataService.cartId$.next(this.cartData.id);
     this.router.navigate(["/cart-checkout"]);
   }
 }

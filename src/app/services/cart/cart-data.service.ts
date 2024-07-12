@@ -15,6 +15,7 @@ export class CartDataService {
   cartProductCount: number =0;
 
   cartCheckoutData$ = new BehaviorSubject<any>([]);
+  cartId$ = new BehaviorSubject<any>(0);
 
   constructor(private cartService: CartService) { }
 
@@ -43,7 +44,6 @@ export class CartDataService {
       this.cartService.updateCartProductQuantity(this.cartId, {product_id_quantity: this.cartProductsIdQty}).subscribe({
         next: (res)=>{
           this.cartService.cartIdQuantity$.next(res.product_id_quantity)
-          console.log("After add to cart::::::", res)
         }
       })
     } else {

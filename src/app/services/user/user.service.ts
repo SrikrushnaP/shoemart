@@ -34,4 +34,8 @@ export class UserService {
     this.isLoggedIn$.next(false);
     this.router.navigate(['/home'])
   }
+
+  getUserDetails(userId:any){
+    return this.apiService.get(this.baseURL + '/user/'+userId);
+  }
 }
