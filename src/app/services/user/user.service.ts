@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '../core/api.service';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -11,6 +11,10 @@ export class UserService {
   isLoggedIn$ = new BehaviorSubject<boolean>(false);
 
   constructor(private apiService: ApiService, private router: Router) { }
+
+  userRegister(userData: any): Observable<any> {
+    return this.apiService.post(this.baseURL + '/user', userData);
+  }
 
   loginUser(user: any) {
     // return this.http.post(`${this.baseURL}/api/login`, user);

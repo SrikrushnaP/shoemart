@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
+import { UserService } from '../../services/user/user.service';
 
 @Component({
   selector: 'app-register',
@@ -13,5 +14,14 @@ export class RegisterComponent {
   signUpFormValue: any = {};
   user_data: any;
 
-  onSubmitSignUp(){}
+  constructor(private userService: UserService,private router: Router){
+
+  }
+
+  onSubmitSignUp(){
+    // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.signUpFormValue));
+    this.userService.userRegister(this.signUpFormValue).subscribe((data)=>{
+      this.router.navigate(["/login"]);
+    })
+  }
 }
