@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CartService } from './cart.service';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +13,8 @@ export class CartDataService {
 
   productQueryString: any = '';
   cartProductCount: number =0;
+
+  cartCheckoutData$ = new BehaviorSubject<any>([]);
 
   constructor(private cartService: CartService) { }
 

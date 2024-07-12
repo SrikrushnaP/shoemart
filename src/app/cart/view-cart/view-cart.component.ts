@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 import { CartDataService } from '../../services/cart/cart-data.service';
 import { CartService } from '../../services/cart/cart.service';
 import { ProductService } from '../../services/product/product.service';
@@ -27,7 +27,8 @@ export class ViewCartComponent implements OnInit {
   constructor(
     private cartService: CartService,
     private cartDataService: CartDataService,
-    private productService: ProductService
+    private productService: ProductService,
+    private router: Router
   ){}
 
   ngOnInit(): void {
@@ -98,5 +99,10 @@ export class ViewCartComponent implements OnInit {
       this.cartService.cartIdQuantity$.next(cartProductTobeRemoveTemp)
 
     })
+  }
+
+  cartChckout(){
+    this.cartDataService.cartCheckoutData$.next(this.cartProductList);
+    this.router.navigate(["/cart-checkout"]);
   }
 }

@@ -1,6 +1,129 @@
-<div class="checkout-container">
+<!-- <div class="checkout-container">
   <div class="cart-confirm-tick">
     <i class="bi bi-check2-circle"></i>
   </div>
   <h1 class="cart-confirm-tick">Your Order Confirmed</h1>
+</div> -->
+
+<div class="container">
+  <section class="h-100 py-5">
+    <div class="row d-flex justify-content-center h-100">
+      <div class="col-md-10 col-12">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h3 class="fw-normal mb-0 text-black">Shipping address</h3>
+        </div>
+        <div class="card text-info mb-3">
+          <div class="card-body">
+            <small>
+              <span># The prefilled addresss are showing from your profile</span><br>
+              <span># If you modify the address here it willstore for this specific order, it will not update your profile address details</span>
+            </small>
+          </div>
+        </div>
+        <hr>
+        <form class="needs-validation" [formGroup]="addAddressForm" (ngSubmit)="placeOrder()">
+          <div class="row g-3">
+            <div class="col-sm-6">
+              <label for="fName" class="form-label">First name</label>
+              <input type="text" class="form-control" id="fName" placeholder="" formControlName="fName">
+              @if (addressFormCtrl['fName'].errors?.['required'] && (addressFormCtrl['fName'].touched || addressFormCtrl['fName'].dirty)) {
+                <div class="text-danger">
+                  Valid first name is required.
+                </div>
+              }
+            </div>
+            <div class="col-sm-6">
+              <label for="lName" class="form-label">Last name</label>
+              <input type="text" class="form-control" id="lName" placeholder="" formControlName="lName">
+              @if (addressFormCtrl['lName'].errors?.['required'] && (addressFormCtrl['lName'].touched || addressFormCtrl['lName'].dirty)) {
+                <div class="text-danger">
+                  Valid last name is required.
+                </div>
+              }
+            </div>
+            <div class="col-12">
+              <label for="contactNum" class="form-label">Contact Number</label>
+              <input type="text" class="form-control" id="contactNum" placeholder="1234567890"
+                formControlName="contactNum">
+              <div class="text-danger">
+                @if (addressFormCtrl['contactNum'].errors?.['required'] && (addressFormCtrl['contactNum'].touched || addressFormCtrl['contactNum'].dirty)) {
+                  <span>
+                    Contact Number is required
+                  </span>
+                } @else if (addressFormCtrl['contactNum'].errors?.['pattern'] && addressFormCtrl['contactNum'].touched) {
+                  <span>
+                    Please enter a valid Contact Number
+                  </span>
+                }
+              </div>
+            </div>
+            <div class="col-12">
+              <label for="line1" class="form-label">Address</label>
+              <input type="text" class="form-control" id="line1" placeholder="1234 Main St" formControlName="line1">
+              @if (addressFormCtrl['line1'].errors?.['required'] && (addressFormCtrl['line1'].touched || addressFormCtrl['line1'].dirty)) {
+                <div class="text-danger">
+                  Please enter your shipping address.
+                </div>
+              }
+            </div>
+            <div class="col-12">
+              <label for="line2" class="form-label">Address 2 <span class="text-muted">(Optional)</span></label>
+              <input type="text" class="form-control" id="line2" placeholder="Apartment or suite"
+                formControlName="line2">
+            </div>
+
+            <div class="col-md-5">
+              <label for="city" class="form-label">City</label>
+              <input type="text" class="form-control" id="city" placeholder="India" formControlName="city" value="India">
+              @if (addressFormCtrl['city'].errors?.['required'] && (addressFormCtrl['city'].touched || addressFormCtrl['city'].dirty)) {
+                <div class="text-danger">
+                  Please select a city.
+                </div>
+              }
+            </div>
+
+            <div class="col-md-4">
+              <label for="state" class="form-label">State</label>
+              <input type="text" class="form-control" id="state" placeholder="123456" formControlName="state" value="Odisha">
+              @if (addressFormCtrl['state'].errors?.['required'] && (addressFormCtrl['state'].touched || addressFormCtrl['state'].dirty)) {
+                <div class="text-danger">
+                  Please select state.
+                </div>
+              }
+            </div>
+
+            <div class="col-md-3">
+              <label for="postalCode" class="form-label">Postal Code</label>
+              <input type="text" class="form-control" id="postalCode" placeholder="123456"
+                formControlName="postalCode">
+              <div class="text-danger">
+                @if (addressFormCtrl['postalCode'].errors?.['required'] && (addressFormCtrl['postalCode'].touched || addressFormCtrl['postalCode'].dirty)) {
+                  <span>
+                    Postal Code is required
+                  </span>
+                } @else if (addressFormCtrl['postalCode'].errors?.['pattern'] && addressFormCtrl['postalCode'].touched) {
+                  <span>
+                    Please enter a valid Postal/PIN Code
+                  </span>
+                }
+              </div>
+            </div>
+            <div class="col-12">
+              <label for="transavtionRefNum" class="form-label">Transaction Reference Number</label>
+              <input type="text" class="form-control" id="transavtionRefNum" formControlName="transavtionRefNum">
+              @if (addressFormCtrl['transavtionRefNum'].errors?.['required'] && (addressFormCtrl['transavtionRefNum'].touched || addressFormCtrl['transavtionRefNum'].dirty)) {
+                <div class="text-danger">
+                  Please enter your shipping address.
+                </div>
+              }
+            </div>
+          </div>
+          <hr class="my-4">
+          <!-- <a href="payment/cart-payment" class="w-100 btn btn-primary btn-lg" type="submit">Continue to pay </a> -->
+          <button class="w-100 btn btn-primary btn-lg" type="submit" [disabled]="!addAddressForm.valid">Continue to pay </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
 </div>
