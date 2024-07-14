@@ -1,10 +1,20 @@
 <div class="container">
   <div class="row">
-    <div class="col-lg-3 mt-3">
-      <!-- Side bar will go here -->
-    </div>
-    <div class="col-lg-9 mb-3 mt-3">
-      <!-- <h2 class="pb-2 border-bottom">Top Products</h2> -->
+    <div class="col-lg-12 mb-4 mt-4">
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <h3 class="fw-normal mb-0 text-black">Product List</h3>
+        <div class="btn-group">
+          <button class="btn btn-secondary btn-sm" type="button">
+            Short By: New
+          </button>
+          <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+            <span class="visually-hidden">Toggle Dropdown</span>
+          </button>
+          <ul class="dropdown-menu">
+            <li> <a class="dropdown-item" href="#">New first</a></li>
+          </ul>
+        </div>
+      </div>
       <!-- START PRODUCT DISPLAY -->
       <div class="row mt-5">
         @for (product of productList; track $index) {

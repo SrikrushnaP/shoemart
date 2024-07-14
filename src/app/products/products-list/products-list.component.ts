@@ -24,7 +24,6 @@ export class ProductsListComponent {
 
   getProductDetailsCategoryName(category:any, categoryValue:any){
     this.productService.viewAllProductByParam(category, categoryValue).subscribe(res=>{
-      console.log("Res::::::::", res)
       this.productList = res
     })
   }
