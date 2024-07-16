@@ -25,4 +25,8 @@ export class ProductsRowComponent {
       this.productList=res;
     })
   }
+
+  addProductTocart(productId:any){
+    alert("TODO")
+  }
 }

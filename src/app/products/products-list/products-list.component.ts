@@ -28,5 +28,7 @@ export class ProductsListComponent {
     })
   }
 
-  addItemTocart(productId: any){}
+  addProductTocart(productId:any){
+    alert("TODO")
+  }
 }
