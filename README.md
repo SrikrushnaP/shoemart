@@ -46,9 +46,10 @@ If you like my work, feel free to:
 - ⭐ this repository. It helps.
 - Create a bug report
 
-If you see an error message or run into an issue, please [create bug report](https://github.com/SrikrushnaP/ecommerce-template/issues/new). This effort is valued and it will help me.
+If you see an error message or run into an issue, please [create bug report](https://github.com/SrikrushnaP/shoemart/issues). This effort is valued and it will help me.
 
 - If you have an idea, or you're missing a capability that would make development easier and more robust, please [Submit feature request](https://github.com/SrikrushnaP/ecommerce-template/issues/new).
+- Create the [pull request ](https://github.com/SrikrushnaP/shoemart/pulls)
 
 If a similar feature request already exists, don't forget to leave a "+1".
 If you add some more information such as your thoughts and vision about the feature, your comments will be embraced warmly :)
