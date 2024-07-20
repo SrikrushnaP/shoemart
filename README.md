@@ -1,5 +1,9 @@
 # "ShoeMart" an angular-ecommerce project
 
+
+![image](https://github.com/user-attachments/assets/38109a94-e98f-45fe-8ce8-32d81810b105)
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.4.
 
 Ecommerce portal where some of the user(Seller) who want to sell the product and services using this and some of the user(Buyer/End User) who needs the product they can buy from the user(Seller)
@@ -7,21 +11,23 @@ Ecommerce portal where some of the user(Seller) who want to sell the product and
 This is the upgraded version and combination of the below two
 
 - angular-ecommerce project: https://github.com/SrikrushnaP/angular-ecommerce
-- ecommerce template : https://github.com/SrikrushnaP/ecommerce-template
+- ecommerce template : https://github.com/SrikrushnaP/ecommerce-template For live [demo link](https://srikrushnap.github.io/ecommerce-template/)
 
 # Project Setup
 
-**Step 1:** clone the project: `https://github.com/SrikrushnaP/shoemart.git`
+**Step 1:** clone the project: `git clone https://github.com/SrikrushnaP/shoemart.git`
 
 **Step 2:** `cd shoemart`
 
-**Step 3:** `git pull origin develop` or `master`
+**Step 3:** `git pull origin main`
 
 **Step 4:** Install Node form https://nodejs.org/en/
 
 **Step 5:** `npm install`
 
-**Step 6:** `npm install -g json-server` (Install JSON mock server)
+**Step 6:** `npm install -g json-server@0.17.4` (Install JSON mock server)
+
+  **Note:** Check when you are using any lastest version of json-server. Document for the version 0.17.4 [link](https://www.npmjs.com/package/json-server/v/0.17.4)
 
 **Step 7 (Optional):** `npm install -g @angular/cli ` (Install angular CLI)
 
@@ -29,13 +35,15 @@ This is the upgraded version and combination of the below two
 
 **Step 9:** In one run command: `ng serve`
 
-**Step 10:** Another one run command: `json-server --watch mock-api-data.json`
+**Step 10:** Another one run command: `json-server --watch db/mock-api-data.json`
 
 Now you can ready to go
 
 **Step 11:** Open your browser and type: http://localhost:4200
 
-If you want to see the mock api on your browser you can hit the link: http://localhost:3000/
+If you want to see the mock api on your browser you can hit the link: http://localhost:3000/api-end-point
+<img width="518" alt="image" src="https://github.com/user-attachments/assets/7ae2607d-b5fa-425b-92dc-5873530bb777">
+
 
 If you want to learn more on mock API you can go through the doc https://www.npmjs.com/package/json-server
 

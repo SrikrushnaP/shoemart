@@ -12,6 +12,11 @@ export class UserService {
 
   constructor(private apiService: ApiService, private router: Router) { }
 
+  checkUserEmail(email: string) {
+    // return this.http.post(`${this.baseURL}/api/login`, user);
+    return this.apiService.get(this.baseURL + '/user?email=' + email);
+  }
+
   userRegister(userData: any): Observable<any> {
     return this.apiService.post(this.baseURL + '/user', userData);
   }

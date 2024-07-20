@@ -37,9 +37,11 @@ export class ProductViewComponent {
         this.getProductDetailsById(this.productId);
       })
 
-      this.wishlistDataService.getUserWishlistData(this.userSessionId)
+      if(this.userSessionId){
+        this.wishlistDataService.getUserWishlistData(this.userSessionId)
 
-      this.cartDataService.getUserCartData(this.userSessionId);
+        this.cartDataService.getUserCartData(this.userSessionId);
+      }
     }
   }
 
@@ -59,7 +61,11 @@ export class ProductViewComponent {
 ||...............................*/
 
 
-toggleProductInWishlist(productId:any){
+toggleProductInWishlist(productId:number){
+  if(!this.userSessionId){
+    alert("After login you can add to your wishlist")
+    return;
+  }
   this.wishlistDataService.toggleItemInWishlist(productId)
 }
 
@@ -73,6 +79,10 @@ toggleProductInWishlist(productId:any){
 ||...........................*/
 
 addProductTocart(productId:any){
+  if(!this.userSessionId){
+    alert("After login you acn able to add product in the cart")
+    return;
+  }
   this.cartDataService.addItemTocart(productId)
 }
 

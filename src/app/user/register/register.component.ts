@@ -20,8 +20,16 @@ export class RegisterComponent {
 
   onSubmitSignUp(){
     // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.signUpFormValue));
-    this.userService.userRegister(this.signUpFormValue).subscribe((data)=>{
-      this.router.navigate(["/login"]);
+    // check User Email is already registered or not
+    this.userService.checkUserEmail(this.signUpFormValue.email).subscribe((res)=>{
+      if(res.length){
+        alert("Email already registered")
+      } else {
+        this.userService.userRegister(this.signUpFormValue).subscribe((data)=>{
+          this.router.navigate(["/login"]);
+        })
+      }
     })
+
   }
 }

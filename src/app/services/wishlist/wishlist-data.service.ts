@@ -26,13 +26,14 @@ export class WishlistDataService {
     return this.userWishList.includes(Number(productId))
   }
 
-  toggleItemInWishlist(id: any){
-    if(!this.checkProductInWishlist(id)){
-      this.userWishList.push(id)
+  toggleItemInWishlist(id: number){
+    const productId = Number(id)
+    if(!this.checkProductInWishlist(productId)){
+      this.userWishList.push(productId)
       this.isInWishList = true;
       this.toggWishlistMsg = "Added to your Wishlist";
     }else{
-      this.userWishList.splice(this.userWishList.indexOf(Number(id)), 1);
+      this.userWishList.splice(this.userWishList.indexOf(productId), 1);
       this.isInWishList = false;
       this.toggWishlistMsg = "Removed from your Wishlist";
     }
